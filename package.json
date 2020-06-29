@@ -1,0 +1,25 @@
+{
+  "name": "cicada-ci",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">   <img src=\"./docs/images/cicada.png\" style=\"text-align: top;\"> </p>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjli/CicadaCi.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sjli/CicadaCi/issues"
+  },
+  "homepage": "https://github.com/sjli/CicadaCi#readme",
+  "devDependencies": {
+    "typeorm": "0.2.22"
+  }
+}
