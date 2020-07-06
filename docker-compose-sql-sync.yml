@@ -1,0 +1,50 @@
+###############################################################################
+#                        Author: james.li0122@gmail.com                       #
+###############################################################################
+# 初次启动时使用，通过schema:sync完成建表，后续开发过程中无需执行
+version: '3.7'
+
+services:
+  base_image:
+    build: .
+    image: cicada_ci:dev
+
+  dev_mysql:
+    image: mysql:5.7
+    command:
+      [
+        'mysqld',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_general_ci',
+      ]
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_PASSWORD: 123456
+      MYSQL_DATABASE: db_feci_open
+    volumes:
+      - ./.docker/mysql_data:/var/lib/mysql
+
+  dev_mysql_adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  dev_webserver:
+    image: cicada_ci:dev
+    command:
+      ['/bin/bash', '-c', 'cd webserver && npm run typeorm:cli -- schema:sync']
+    ports:
+      - 3600:3600
+    depends_on:
+      - base_image
+      - dev_mysql
+    environment:
+      DATABASE_HOST: dev_mysql
+      DATABASE_PORT: 3306
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: 123456
+      DATABASE_NAME: db_feci_open
+    volumes:
+      - ./webserver/src:/usr/app/webserver/src
+    restart: on-failure

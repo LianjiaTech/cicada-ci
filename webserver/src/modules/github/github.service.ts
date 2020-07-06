@@ -19,6 +19,7 @@ export class GithubService {
       .request(config)
       .toPromise()
       .catch(err => {
+        console.log('errrr', config);
         throw new HttpException(err, err.status || -1);
       });
     return res.data;
@@ -41,6 +42,11 @@ export class GithubService {
       headers: {
         Authorization: `token ${access_token}`,
       },
+    }).catch(err => {
+      throw new HttpException(
+        { message: '授权失败或项目不存在，通常出现在设置非本人创建项目时' },
+        404,
+      );
     });
   }
 

@@ -8,16 +8,17 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
+    "start": "NODE_ENV=development nest start",
     "start:dev": "NODE_ENV=development nest start --watch",
-    "start:debug": "nest start --debug --watch",
+    "start:debug": "NODE_ENV=development nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watch",
     "test:cov": "jest --runInBand --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli -f ./src/utils/init.mysql.conf.ts"
   },
   "dependencies": {
     "@nestjs/common": "^6.7.2",

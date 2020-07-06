@@ -57,7 +57,7 @@
       <Divider orientation="left">发布设定</Divider>
       <Row>
         <Col span="12">
-          <FormItem label="发布器选择" required prop="deployers">
+          <FormItem label="发布器选择" prop="deployers">
             <DeployerSelectWithManage
               :multiple="true"
               :data="config.deployers"

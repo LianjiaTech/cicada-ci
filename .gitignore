@@ -14,6 +14,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+#docker files
+.docker/mysql_data/*
+.docker/redis_data/*
+#expect
+!.docker/mysql_data/.gitkeep
+!.docker/redis_data/.gitkeep
+
 # Editor directories and files
 .idea
 .vscode

@@ -9,9 +9,10 @@ export class ClientProxyMiddleware implements NestMiddleware {
     if (excludeRegExp.test(req.path)) {
       next();
     } else {
+      const clientHost = process.env.DEV_CLIENT_HOST || '0.0.0.0:8080';
       const proxy = httpProxy.createProxyServer({});
       proxy.web(req, res, {
-        target: 'http://0.0.0.0:8080',
+        target: `http://${clientHost}:8080`,
       });
     }
   }

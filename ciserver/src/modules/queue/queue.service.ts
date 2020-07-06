@@ -28,7 +28,7 @@ export class QueueService {
     //todo redis env
     const queue = new Queue('project_' + project_id, {
       redis: {
-        host: 'localhost',
+        host: process.env.REDIS_HOST,
         port: 6379,
       },
     });
