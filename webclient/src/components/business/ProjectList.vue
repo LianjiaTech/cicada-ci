@@ -51,10 +51,17 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Table, Button, Icon } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Project } from '../../types/project';
 
-@Component
+@Component({
+  components: {
+    Table,
+    Button,
+    Icon,
+  },
+})
 export default class ProjectList extends mixins(CurrentUser) {
   @Prop({
     default: () => {

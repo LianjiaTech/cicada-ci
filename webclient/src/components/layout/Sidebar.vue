@@ -19,10 +19,11 @@
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import VueRouter, { RouteRecord } from 'vue-router';
 import { mixins } from 'vue-class-component';
+import { Menu, Icon, MenuItem } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { User } from '../../types/user';
 
-interface MenuItem {
+interface IFMenuItem {
   key: string;
   to: string;
   name: string;
@@ -30,7 +31,7 @@ interface MenuItem {
   visible_level: number;
 }
 
-const defaultMenuData: MenuItem[] = [
+const defaultMenuData: IFMenuItem[] = [
   {
     key: '1-1',
     to: '/projects',
@@ -68,7 +69,13 @@ const defaultMenuData: MenuItem[] = [
   },
 ];
 
-@Component
+@Component({
+  components: {
+    Menu,
+    Icon,
+    MenuItem,
+  },
+})
 export default class Sidebar extends mixins(CurrentUser) {
   @Prop(Boolean) isCollapsed!: boolean;
 
@@ -77,7 +84,7 @@ export default class Sidebar extends mixins(CurrentUser) {
     this.updateMenu();
   }
 
-  menuData: MenuItem[] = [];
+  menuData: IFMenuItem[] = [];
 
   activeKey = '1-1';
 

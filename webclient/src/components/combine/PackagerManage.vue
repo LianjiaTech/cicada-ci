@@ -16,6 +16,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, Button, Icon, Modal } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import PackagerList from '@/components/business/PackagerList.vue';
 import PackagerConfig from '@/components/business/PackagerConfig.vue';
@@ -26,6 +27,10 @@ import { nsPackager } from '../../store';
   components: {
     PackagerConfig,
     PackagerList,
+    Card,
+    Button,
+    Icon,
+    Modal,
   },
 })
 export default class PackagerManage extends mixins(CurrentUser) {

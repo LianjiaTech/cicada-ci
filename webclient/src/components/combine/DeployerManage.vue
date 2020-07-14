@@ -16,6 +16,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, Button, Icon, Modal } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import DeployerList from '@/components/business/DeployerList.vue';
 import DeployerConfig from '@/components/business/DeployerConfig.vue';
@@ -26,6 +27,10 @@ import { nsDeployer } from '../../store';
   components: {
     DeployerConfig,
     DeployerList,
+    Card,
+    Button,
+    Icon,
+    Modal,
   },
 })
 export default class DeployerManage extends mixins(CurrentUser) {

@@ -19,12 +19,12 @@
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Form, FormItem, Input, Button } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Group, CreateGroupConfig } from '../../types/group';
 import { defaultCreateConfig } from '../../store/modules/group';
 import { User } from '../../types/user';
 import UserSelect from '@/components/business/UserSelect.vue';
-import { Form } from 'iview';
 
 interface ComponentGroupConfig {
   reset: () => void;
@@ -33,6 +33,10 @@ interface ComponentGroupConfig {
 @Component({
   components: {
     UserSelect,
+    Form,
+    FormItem,
+    Input,
+    Button,
   },
 })
 export default class GroupConfig extends mixins(CurrentUser)

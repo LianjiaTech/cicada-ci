@@ -20,10 +20,11 @@
 <script lang="ts">
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
+import { Select, Option } from 'iview';
 import { nsUser } from '../../store/index';
 import { User } from '../../types/user';
 
-@Component({})
+@Component({ components: { Select, Option } })
 export default class UserSelect extends Vue {
   @State('searchResults', nsUser) searchResults!: User[];
   @Action('search', nsUser) search!: (keyword: string) => void;

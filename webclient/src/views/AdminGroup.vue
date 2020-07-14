@@ -22,6 +22,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, Button, Page, Modal } from 'iview';
 import CurrentUser from '../mixins/CurrentUser';
 import GroupList from '@/components/business/GroupList.vue';
 import GroupConfig from '@/components/business/GroupConfig.vue';
@@ -34,6 +35,10 @@ import { nsGroup } from '../store';
   components: {
     GroupList,
     GroupConfig,
+    Card,
+    Button,
+    Page,
+    Modal,
   },
 })
 export default class Jobs extends mixins(CurrentUser) {

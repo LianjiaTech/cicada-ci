@@ -19,9 +19,16 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Table, Button, Icon } from 'iview';
 import { DeployRecord, DeployStatus } from '../../types/deploy-record';
 
-@Component
+@Component({
+  components: {
+    Table,
+    Button,
+    Icon,
+  },
+})
 export default class DeployRecordList extends Vue {
   @Prop({
     default: () => {

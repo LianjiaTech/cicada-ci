@@ -45,7 +45,7 @@
 <script lang="ts">
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Message } from 'iview';
+import { Message, Layout, Sider, Icon, Content, Header, Footer } from 'iview';
 import VueRouter, { RouteRecord } from 'vue-router';
 import { mixins } from 'vue-class-component';
 import Sidebar from '@/components/layout/Sidebar.vue'; // @ is an alias to /src
@@ -53,10 +53,18 @@ import Headbar from '@/components/layout/Headbar.vue'; // @ is an alias to /src
 import { nsUser } from './store/index';
 import CurrentUser from './mixins/CurrentUser';
 
+Vue.prototype.$Message = Message;
+
 @Component({
   components: {
     Sidebar,
     Headbar,
+    Layout,
+    Sider,
+    Icon,
+    Content,
+    Header,
+    Footer,
   },
 })
 export default class App extends mixins(CurrentUser) {

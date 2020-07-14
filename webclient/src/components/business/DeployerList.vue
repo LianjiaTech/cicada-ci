@@ -23,10 +23,17 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Table, Button, Icon } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Deployer } from '../../types/deployer';
 
-@Component
+@Component({
+  components: {
+    Table,
+    Button,
+    Icon,
+  },
+})
 export default class DeployerList extends mixins(CurrentUser) {
   @Prop({
     default: () => {

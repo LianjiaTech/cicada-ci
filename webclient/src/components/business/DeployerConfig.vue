@@ -22,16 +22,23 @@
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Form, FormItem, Input, Button } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Deployer, BasicDeployerConfig } from '../../types/deployer';
 import { defaultDeployerConfig } from '../../store/modules/deployer';
-import { Form } from 'iview';
 
 interface ComponentDeployerConfig {
   reset: () => void;
 }
 
-@Component({})
+@Component({
+  components: {
+    Form,
+    FormItem,
+    Input,
+    Button,
+  },
+})
 export default class DeployerConfig extends mixins(CurrentUser)
   implements ComponentDeployerConfig {
   @Prop({

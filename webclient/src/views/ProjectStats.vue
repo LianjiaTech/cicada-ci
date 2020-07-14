@@ -26,6 +26,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, DatePicker } from 'iview';
 import CurrentUser from '../mixins/CurrentUser';
 import BuildRecordCountTable from '@/components/stats/BuildRecordCountTable.vue';
 import DailyCountLineChart from '@/components/stats/DailyCountLineChart.vue';
@@ -36,6 +37,8 @@ import { BuildRecordSummaryCount, BuildRecordDailyCount } from '../types/stats';
   components: {
     BuildRecordCountTable,
     DailyCountLineChart,
+    Card,
+    DatePicker,
   },
 })
 export default class ProjectStats extends mixins(CurrentUser) {

@@ -22,16 +22,23 @@
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Form, FormItem, Input, Button } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Builder, BasicBuilderConfig } from '../../types/builder';
 import { defaultBuilderConfig } from '../../store/modules/builder';
-import { Form } from 'iview';
 
 interface ComponentBuilderConfig {
   reset: () => void;
 }
 
-@Component({})
+@Component({
+  components: {
+    Form,
+    FormItem,
+    Input,
+    Button,
+  },
+})
 export default class BuilderConfig extends mixins(CurrentUser)
   implements ComponentBuilderConfig {
   @Prop({

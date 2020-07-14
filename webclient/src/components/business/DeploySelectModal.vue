@@ -1,27 +1,21 @@
 <template>
-  <Modal
-    :value="isShow"
-    title="选择发布方式"
-    @on-ok="onOk"
-    @on-visible-change="onVisibleChange"
-  >
+  <Modal :value="isShow" title="选择发布方式" @on-ok="onOk" @on-visible-change="onVisibleChange">
     <RadioGroup v-model="deployType" class="modal-tab" @on-change="onChangeTab">
       <Radio label="default">
-        默认发布<HelpTip
-          message="默认发布将依次对所有符合分支过滤条件的发布器"
-        />
+        默认发布
+        <HelpTip message="默认发布将依次对所有符合分支过滤条件的发布器" />
       </Radio>
       <Radio label="select">指定发布器</Radio>
     </RadioGroup>
     <div v-if="deployType === 'default'">
       <Row>
-        <Col span="3">构建分支: </Col>
+        <Col span="3">构建分支:</Col>
         <Col span="7">{{ buildRecord.branch }}</Col>
       </Row>
       <Row v-for="(deployer, index) in deployers" :key="deployer.id">
-        <Col span="3">发布器: </Col>
+        <Col span="3">发布器:</Col>
         <Col span="4" class="nowrap">{{ deployer.name }}</Col>
-        <Col span="3">限定分支: </Col>
+        <Col span="3">限定分支:</Col>
         <Col span="3">{{ deployer.branch_filter || '无' }}</Col>
         <Col span="3">
           <Icon
@@ -29,7 +23,8 @@
             class="icon-deploy-mark"
             :class="deployerMatched[index] ? 'matched' : 'unmatched'"
             :type="deployerMatched[index] ? 'ios-checkmark' : 'ios-close'"
-        /></Col>
+          />
+        </Col>
       </Row>
     </div>
     <div v-if="deployType === 'select'">
@@ -39,8 +34,7 @@
           :key="item.id"
           :value="item.id"
           :label="item.name"
-          >{{ item.name }}</Option
-        >
+        >{{ item.name }}</Option>
       </Select>
     </div>
   </Modal>
@@ -49,6 +43,16 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import {
+  Modal,
+  RadioGroup,
+  Radio,
+  Row,
+  Col,
+  Icon,
+  Select,
+  Option,
+} from 'iview';
 import { Deployer } from '../../types/deployer';
 import { BuildRecord } from '../../types/build-record';
 import HelpTip from '../common/HelpTip.vue';
@@ -56,6 +60,14 @@ import HelpTip from '../common/HelpTip.vue';
 @Component({
   components: {
     HelpTip,
+    Modal,
+    RadioGroup,
+    Radio,
+    Row,
+    Col,
+    Icon,
+    Select,
+    Option,
   },
 })
 export default class DeploySelectModal extends Vue {

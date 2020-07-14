@@ -1,23 +1,9 @@
 <template>
   <div>
-    <Select
-      :value="data && data.id"
-      :placeholder="`请选择${name}...`"
-      @on-select="onSelect"
-    >
-      <Option
-        v-for="option in list"
-        :value="option.id"
-        :key="option.id"
-        :label="option.name"
-      >
+    <Select :value="data && data.id" :placeholder="`请选择${name}...`" @on-select="onSelect">
+      <Option v-for="option in list" :value="option.id" :key="option.id" :label="option.name">
         <span>{{ option.name }}</span>
-        <Button
-          class="option-extra"
-          type="text"
-          size="small"
-          @click.stop="onEdit(option)"
-        >
+        <Button class="option-extra" type="text" size="small" @click.stop="onEdit(option)">
           <Icon type="ios-settings" />修改
         </Button>
       </Option>
@@ -28,15 +14,8 @@
         </div>
       </Option>
     </Select>
-    <Modal
-      v-model="isModalShow"
-      footer-hide
-      :closable="false"
-      :mask-closable="false"
-    >
-      <p ref="elmConfigTitle" slot="header">
-        {{ config.id ? '修改' : '新建' }}{{ name }}
-      </p>
+    <Modal v-model="isModalShow" footer-hide :closable="false" :mask-closable="false">
+      <p ref="elmConfigTitle" slot="header">{{ config.id ? '修改' : '新建' }}{{ name }}</p>
       <BuilderConfig :data="config" @on-save="onSave" @on-cancel="onCancel" />
     </Modal>
   </div>
@@ -46,6 +25,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Select, Option, Button, Modal } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import BuilderConfig from '@/components/business/BuilderConfig.vue';
 import { BasicBuilderConfig, Builder } from '../../types/builder';
@@ -55,6 +35,10 @@ import { nsBuilder } from '../../store';
 @Component({
   components: {
     BuilderConfig,
+    Select,
+    Option,
+    Button,
+    Modal,
   },
 })
 export default class BuilderSelectWithManage extends mixins(CurrentUser) {

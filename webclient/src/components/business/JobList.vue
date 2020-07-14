@@ -19,22 +19,16 @@
       <div class="ellipsis">{{ row.builder.name }}</div>
     </template>
     <template slot-scope="{ row }" slot="packagers">
-      <div class="ellipsis lines">
-        {{ row.packagers.map(item => item.package_name).join('\n') }}
-      </div>
+      <div class="ellipsis lines">{{ row.packagers.map(item => item.package_name).join('\n') }}</div>
     </template>
     <template slot-scope="{ row }" slot="deployers">
-      <div class="ellipsis lines">
-        {{ row.deployers.map(item => item.name).join('\n') }}
-      </div>
+      <div class="ellipsis lines">{{ row.deployers.map(item => item.name).join('\n') }}</div>
     </template>
     <template slot-scope="{ row }" slot="create_user">
       <div class="ellipsis">{{ row.create_user.name }}</div>
     </template>
     <template slot-scope="{ row }" slot="update_user">
-      <div class="ellipsis">
-        {{ row.update_user ? row.update_user.name : '-' }}
-      </div>
+      <div class="ellipsis">{{ row.update_user ? row.update_user.name : '-' }}</div>
     </template>
     <template slot-scope="{ row }" slot="time">
       <div class="ellipsis">{{ row.update_time || row.create_time }}</div>
@@ -55,10 +49,17 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Table, Button, Icon } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Job } from '../../types/job';
 
-@Component
+@Component({
+  components: {
+    Table,
+    Button,
+    Icon,
+  },
+})
 export default class JobtList extends mixins(CurrentUser) {
   @Prop({
     default: () => {

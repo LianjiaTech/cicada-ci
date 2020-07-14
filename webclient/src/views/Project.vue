@@ -4,8 +4,17 @@
     <Tabs>
       <TabPane label="任务管理" name="job">
         <Card class="card" :bordered="false" dis-hover>
-          <Button class="extra" type="text" slot="extra" :to="`/project/${id}/job/create`">
-            <Icon style="vertical-align: top" type="ios-add" size="18" />新建任务
+          <Button
+            class="extra"
+            type="text"
+            slot="extra"
+            :to="`/project/${id}/job/create`"
+          >
+            <Icon
+              style="vertical-align: top"
+              type="ios-add"
+              size="18"
+            />新建任务
           </Button>
           <JobList :data="jobs" :project_id="id" @on-click-row="onClickRow" />
         </Card>
@@ -27,6 +36,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Tabs, TabPane, Card, Button, Icon } from 'iview';
 import CurrentUser from '../mixins/CurrentUser';
 import ProjectInfoCard from '@/components/business/ProjectInfoCard.vue';
 import JobList from '@/components/business/JobList.vue';
@@ -45,6 +55,11 @@ import { PaginationOptions } from '../types/common';
     BuilderManage,
     PackagerManage,
     DeployerManage,
+    Tabs,
+    TabPane,
+    Card,
+    Button,
+    Icon,
   },
 })
 export default class Jobs extends mixins(CurrentUser) {

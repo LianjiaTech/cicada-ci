@@ -11,7 +11,9 @@
     <Card class="card" :bordered="false" dis-hover>
       <Breadcrumb slot="title">
         <BreadcrumbItem to="/projects">项目列表</BreadcrumbItem>
-        <BreadcrumbItem :to="`/project/${project_id}`">项目: {{ project.name }}</BreadcrumbItem>
+        <BreadcrumbItem :to="`/project/${project_id}`"
+          >项目: {{ project.name }}</BreadcrumbItem
+        >
         <BreadcrumbItem>任务: {{ job.name }}</BreadcrumbItem>
       </Breadcrumb>
       <Collapse simple value="tools" style="border-width: 0; margin-top: -15px">
@@ -19,7 +21,10 @@
           调试工具栏
           <Row slot="content">
             <Col>
-              <BuildRecordCreator :repo_url="project.repo_url" @on-submit="onCreateBuild" />
+              <BuildRecordCreator
+                :repo_url="project.repo_url"
+                @on-submit="onCreateBuild"
+              />
             </Col>
           </Row>
         </Panel>
@@ -55,6 +60,17 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import {
+  Row,
+  Col,
+  Card,
+  BreadcrumbItem,
+  Breadcrumb,
+  Collapse,
+  Page,
+} from 'iview';
+// @ts-ignore
+import Panel from 'iview/src/components/panel';
 import CurrentUser from '../mixins/CurrentUser';
 import ProjectInfoCard from '@/components/business/ProjectInfoCard.vue';
 import JobInfoCard from '@/components/business/JobInfoCard.vue';
@@ -81,6 +97,14 @@ import { defaultBuildRecord } from '../store/modules/build-record';
     BuildRecordList,
     BuildRecordCreator,
     DeploySelectModal,
+    Row,
+    Col,
+    Card,
+    BreadcrumbItem,
+    Breadcrumb,
+    Collapse,
+    Panel,
+    Page,
   },
 })
 export default class Jobs extends mixins(CurrentUser) {

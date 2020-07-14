@@ -18,11 +18,17 @@
 <script lang="ts">
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
+import { Select, Option } from 'iview';
 import { nsGithub, nsGitlab } from '../../store';
 import { mixins } from 'vue-class-component';
 import CurrentUser from '../../mixins/CurrentUser';
 
-@Component({})
+@Component({
+  components: {
+    Select,
+    Option,
+  },
+})
 export default class BranchSelect extends mixins(CurrentUser) {
   @State('branches', nsGithub) githubBranches!: string[];
   @State('branches', nsGitlab) gitlabBranches!: string[];

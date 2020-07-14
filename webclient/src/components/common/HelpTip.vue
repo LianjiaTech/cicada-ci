@@ -8,8 +8,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Tooltip, Icon } from 'iview';
 
-@Component
+@Component({
+  components: {
+    Tooltip,
+    Icon,
+  },
+})
 export default class HelpTip extends Vue {
   @Prop({ default: '' }) message!: string;
   @Prop({ default: '' }) title!: string;

@@ -4,7 +4,9 @@
       <Col class="title" span="2">项目列表</Col>
       <Col span="20">
         <Icon type="ios-funnel-outline" />:
-        <Checkbox :value="created" @on-change="onFilterCreated">只看我创建的</Checkbox>
+        <Checkbox :value="created" @on-change="onFilterCreated"
+          >只看我创建的</Checkbox
+        >
         <!-- <Checkbox :value="business" @on-change="changeFilterBusiness">只看我管理的项目组的</Checkbox> -->
         <Input
           class="input"
@@ -16,7 +18,10 @@
         />
       </Col>
     </Row>
-    <ProjectList :data="projects.results" @on-click-row="onClickRow"></ProjectList>
+    <ProjectList
+      :data="projects.results"
+      @on-click-row="onClickRow"
+    ></ProjectList>
     <Page
       :total="projects.total"
       :current="page"
@@ -32,6 +37,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, Row, Col, Icon, Checkbox, Input, Page } from 'iview';
 import CurrentUser from '../mixins/CurrentUser';
 import ProjectList from '@/components/business/ProjectList.vue';
 import { nsProject } from '../store';
@@ -41,6 +47,13 @@ import { PaginationOptions } from '../types/common';
 @Component({
   components: {
     ProjectList,
+    Card,
+    Row,
+    Col,
+    Icon,
+    Checkbox,
+    Input,
+    Page,
   },
 })
 export default class Jobs extends mixins(CurrentUser) {
@@ -106,7 +119,6 @@ export default class Jobs extends mixins(CurrentUser) {
   }
 }
 </script>
-
 
 <style lang="less" scoped>
 .title {

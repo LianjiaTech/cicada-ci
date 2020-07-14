@@ -43,6 +43,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, DatePicker, Divider, Row, Col } from 'iview';
 import CurrentUser from '../mixins/CurrentUser';
 import BuildRecordCountTable from '@/components/stats/BuildRecordCountTable.vue';
 import DailyCountLineChart from '@/components/stats/DailyCountLineChart.vue';
@@ -60,6 +61,11 @@ import { BuildStatus } from '../types/build-record';
     BuildRecordCountTable,
     DailyCountLineChart,
     ProjectRankingChart,
+    Card,
+    DatePicker,
+    Divider,
+    Row,
+    Col,
   },
 })
 export default class GlobalStats extends mixins(CurrentUser) {

@@ -18,10 +18,20 @@
 import { mixins } from 'vue-class-component';
 import { State, Action } from 'vuex-class';
 import { Component, Vue } from 'vue-property-decorator';
+import { Row, Col, Dropdown, Icon, DropdownMenu, DropdownItem } from 'iview';
 import { nsUser } from '../../store/index';
 import CurrentUser from '../../mixins/CurrentUser';
 
-@Component
+@Component({
+  components: {
+    Row,
+    Col,
+    Dropdown,
+    Icon,
+    DropdownMenu,
+    DropdownItem,
+  },
+})
 export default class Headbar extends mixins(CurrentUser) {
   @Action('logout', nsUser) logout!: () => void;
 }

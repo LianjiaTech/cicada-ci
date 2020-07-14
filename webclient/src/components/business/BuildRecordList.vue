@@ -51,10 +51,16 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Table, Button } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { BuildRecord, BuildStatus } from '../../types/build-record';
 
-@Component
+@Component({
+  components: {
+    Table,
+    Button,
+  },
+})
 export default class BuildRecordList extends mixins(CurrentUser) {
   @Prop({
     default: () => {

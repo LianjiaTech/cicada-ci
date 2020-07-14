@@ -9,20 +9,14 @@
     </Button>
     <Row>
       <Col span="12" class="nowrap">项目名称：{{ data.name }}</Col>
-      <Col span="12" class="nowrap"
-        >项目分组：{{ data.group ? data.group.name : '无' }}</Col
-      >
+      <Col span="12" class="nowrap">项目分组：{{ data.group ? data.group.name : '无' }}</Col>
     </Row>
     <Row>
       <Col span="12" class="nowrap">仓库地址：{{ data.repo_url }}</Col>
-      <Col span="12" class="nowrap"
-        >启用WebHook：{{ data.enable_webhook ? '是' : '否' }}</Col
-      >
+      <Col span="12" class="nowrap">启用WebHook：{{ data.enable_webhook ? '是' : '否' }}</Col>
     </Row>
     <Row>
-      <Col span="12" class="nowrap"
-        >创建者：{{ data.create_user ? data.create_user.name : '' }}</Col
-      >
+      <Col span="12" class="nowrap">创建者：{{ data.create_user ? data.create_user.name : '' }}</Col>
       <Col span="12" class="nowrap">创建时间：{{ data.create_time }}</Col>
     </Row>
   </Card>
@@ -32,11 +26,18 @@
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, Button, Icon, Row, Col } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Project } from '../../types/project';
 
 @Component({
-  components: {},
+  components: {
+    Card,
+    Button,
+    Icon,
+    Row,
+    Col,
+  },
 })
 export default class ProjectInfoCard extends mixins(CurrentUser) {
   @Prop() data!: Project;

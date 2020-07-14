@@ -16,6 +16,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Card, Button, Icon, Modal } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import BuilderList from '@/components/business/BuilderList.vue';
 import BuilderConfig from '@/components/business/BuilderConfig.vue';
@@ -26,6 +27,10 @@ import { nsBuilder } from '../../store';
   components: {
     BuilderConfig,
     BuilderList,
+    Card,
+    Button,
+    Icon,
+    Modal,
   },
 })
 export default class BuilderManage extends mixins(CurrentUser) {

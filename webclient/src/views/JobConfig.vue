@@ -6,7 +6,11 @@
       <Row>
         <Col span="12">
           <FormItem label="任务名称" required prop="name">
-            <Input class="form-item" v-model="config.name" placeholder="输入任务名称..." />
+            <Input
+              class="form-item"
+              v-model="config.name"
+              placeholder="输入任务名称..."
+            />
           </FormItem>
         </Col>
         <Col span="12">
@@ -76,12 +80,18 @@
       <Row>
         <Col span="12">
           <FormItem label="构建结果Hook" prop="after_build_hook">
-            <Input v-model="config.after_build_hook" placeholder="请输入构建结果反馈url(非必需)" />
+            <Input
+              v-model="config.after_build_hook"
+              placeholder="请输入构建结果反馈url(非必需)"
+            />
           </FormItem>
         </Col>
         <Col span="12">
           <FormItem label="发布结果Hook" prop="after_deploy_hook">
-            <Input v-model="config.after_deploy_hook" placeholder="请输入发布结果反馈url(非必需)" />
+            <Input
+              v-model="config.after_deploy_hook"
+              placeholder="请输入发布结果反馈url(非必需)"
+            />
           </FormItem>
         </Col>
       </Row>
@@ -89,11 +99,16 @@
         <FormItem>
           <Button type="primary" @click="onSave">保存</Button>
           <Button style="margin-left: 15px" @click="onReset">
-            {{
-            id ? '返回' : '取消'
-            }}
+            {{ id ? '返回' : '取消' }}
           </Button>
-          <Button v-if="id" type="error" ghost style="margin-left: 15px" @click="onDelete">删除</Button>
+          <Button
+            v-if="id"
+            type="error"
+            ghost
+            style="margin-left: 15px"
+            @click="onDelete"
+            >删除</Button
+          >
         </FormItem>
       </Row>
     </Form>
@@ -103,7 +118,17 @@
 <script lang="ts">
 import { State, Action } from 'vuex-class';
 import { Component, Vue } from 'vue-property-decorator';
-import { Form, FormItem } from 'iview';
+import {
+  Form,
+  FormItem,
+  Card,
+  Divider,
+  Row,
+  Col,
+  Input,
+  Switch,
+  Button,
+} from 'iview';
 import { mixins } from 'vue-class-component';
 import CurrentUser from '../mixins/CurrentUser';
 import { nsJob, nsProject } from '../store';
@@ -124,6 +149,15 @@ import { Project } from '../types/project';
     BuilderSelectWithManage,
     DeployerSelectWithManage,
     PackagerSelectWithManage,
+    Form,
+    FormItem,
+    Card,
+    Divider,
+    Row,
+    Col,
+    Input,
+    Button,
+    'i-switch': Switch,
   },
 })
 export default class ViewJobConfig extends mixins(CurrentUser) {

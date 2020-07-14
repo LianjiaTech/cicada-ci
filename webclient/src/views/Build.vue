@@ -11,15 +11,23 @@
     <Card class="card" :bordered="false" dis-hover>
       <Breadcrumb slot="title">
         <BreadcrumbItem to="/projects">项目列表</BreadcrumbItem>
-        <BreadcrumbItem :to="`/project/${project_id}`">项目: {{ project.name }}</BreadcrumbItem>
-        <BreadcrumbItem :to="`/project/${project_id}/job/${job_id}`">任务: {{ job.name }}</BreadcrumbItem>
+        <BreadcrumbItem :to="`/project/${project_id}`"
+          >项目: {{ project.name }}</BreadcrumbItem
+        >
+        <BreadcrumbItem :to="`/project/${project_id}/job/${job_id}`"
+          >任务: {{ job.name }}</BreadcrumbItem
+        >
         <BreadcrumbItem>构建详情</BreadcrumbItem>
       </Breadcrumb>
       <Row>
         <Col :span="4">
           <Steps :current="currentStep" direction="vertical">
             <Step title="初始化" status="finish"></Step>
-            <Step v-if="buildRecord.status === '队列中'" title="队列中" :status="'process'"></Step>
+            <Step
+              v-if="buildRecord.status === '队列中'"
+              title="队列中"
+              :status="'process'"
+            ></Step>
             <Step
               v-if="
                 buildRecord.status !== '初始化' &&
@@ -28,25 +36,48 @@
               title="进行中"
               :status="buildRecord.status === '进行中' ? 'process' : 'finish'"
             ></Step>
-            <Step v-if="buildRecord.status === '已完成'" title="已完成" status="finish"></Step>
-            <Step v-if="buildRecord.status === '已取消'" title="已取消" status="finish"></Step>
-            <Step v-if="buildRecord.status === '已失败'" title="已失败" status="error"></Step>
-            <Step v-if="buildRecord.status === '已超时'" title="已超时" status="error"></Step>
+            <Step
+              v-if="buildRecord.status === '已完成'"
+              title="已完成"
+              status="finish"
+            ></Step>
+            <Step
+              v-if="buildRecord.status === '已取消'"
+              title="已取消"
+              status="finish"
+            ></Step>
+            <Step
+              v-if="buildRecord.status === '已失败'"
+              title="已失败"
+              status="error"
+            ></Step>
+            <Step
+              v-if="buildRecord.status === '已超时'"
+              title="已超时"
+              status="error"
+            ></Step>
           </Steps>
           <Card dis-hover :bordered="false" title="操作">
-            <Button v-if="buildRecord.status === BuildStatus.INIT" @click.stop="onClickBuild(id)">构建</Button>
+            <Button
+              v-if="buildRecord.status === BuildStatus.INIT"
+              @click.stop="onClickBuild(id)"
+              >构建</Button
+            >
             <Button
               v-if="buildRecord.status === BuildStatus.PROCESSING"
               @click.stop="onClickAbort(id)"
-            >取消构建</Button>
+              >取消构建</Button
+            >
             <Button
               v-if="buildRecord.status === BuildStatus.INQUEUE"
               @click.stop="onClickDequeue(id)"
-            >取消等待</Button>
+              >取消等待</Button
+            >
             <Button
               v-if="buildRecord.status === BuildStatus.SUCCESS"
               @click.stop="onClickDeploy()"
-            >发布</Button>
+              >发布</Button
+            >
           </Card>
         </Col>
         <Col :span="7">
@@ -61,7 +92,8 @@
                   :key="index"
                   :href="pack.download_url"
                   @click.stop
-                >{{ pack.package_name }} ({{ pack.size }})</a>
+                  >{{ pack.package_name }} ({{ pack.size }})</a
+                >
               </span>
             </Cell>
           </CellGroup>
@@ -69,7 +101,9 @@
             <Row :key="commit.id" v-for="commit of buildRecord.commits">
               <Col span="18">{{ commit.message }}</Col>
               <Col span="6" align="right">
-                <a :href="commit.url" rel="noopener noreferer" target="_blank">查看详情</a>
+                <a :href="commit.url" rel="noopener noreferer" target="_blank"
+                  >查看详情</a
+                >
               </Col>
             </Row>
           </Card>
@@ -87,13 +121,20 @@
               @click="showBuildLogModal"
               size="small"
             ></Button>
-            <textarea class="log" readonly :value="buildRecord.log || '暂无日志'"></textarea>
+            <textarea
+              class="log"
+              readonly
+              :value="buildRecord.log || '暂无日志'"
+            ></textarea>
           </Card>
         </Col>
       </Row>
     </Card>
     <Card title="发布列表" :bordered="false" dis-hover>
-      <DeployRecordList :data="deployRecordList" @on-click-log="showDeployLogModal" />
+      <DeployRecordList
+        :data="deployRecordList"
+        @on-click-log="showDeployLogModal"
+      />
     </Card>
     <DeploySelectModal
       :isShow="showDeployModal"
@@ -102,8 +143,14 @@
       @on-ok="onDeployerSelected"
       @on-visible-change="onDeployModalVisibleChange"
     />
-    <Modal v-model="showLogFullScreen" footer-hide transfer class-name="full-screen-modal">
-      <pre class="log-full-screen">{{logType === 'deploy' ? deployRecord.log : buildRecord.log}}
+    <Modal
+      v-model="showLogFullScreen"
+      footer-hide
+      transfer
+      class-name="full-screen-modal"
+    >
+      <pre
+        class="log-full-screen">{{logType === 'deploy' ? deployRecord.log : buildRecord.log}}
         <Spin
   ref="logSpin"
   v-if="buildRecord.status === '进行中' || deployRecord.status === '进行中'"
@@ -117,6 +164,21 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import {
+  Row,
+  Col,
+  Card,
+  Breadcrumb,
+  BreadcrumbItem,
+  Steps,
+  Button,
+  CellGroup,
+  Cell,
+  Modal,
+  Spin,
+} from 'iview';
+// @ts-ignore
+import Step from 'iview/src/components/step';
 import CurrentUser from '../mixins/CurrentUser';
 import ProjectInfoCard from '@/components/business/ProjectInfoCard.vue';
 import JobInfoCard from '@/components/business/JobInfoCard.vue';
@@ -136,6 +198,18 @@ import { Deployer } from '../types/deployer';
     JobInfoCard,
     DeployRecordList,
     DeploySelectModal,
+    Row,
+    Col,
+    Card,
+    Breadcrumb,
+    BreadcrumbItem,
+    Steps,
+    Step,
+    Button,
+    CellGroup,
+    Cell,
+    Modal,
+    Spin,
   },
 })
 export default class Jobs extends mixins(CurrentUser) {

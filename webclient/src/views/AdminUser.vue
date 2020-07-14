@@ -31,6 +31,7 @@
 <script lang="ts">
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Card, Row, Col, Button, Table } from 'iview';
 import { nsUser } from '../store/index';
 import { User } from '../types/user';
 import { mixins } from 'vue-class-component';
@@ -40,6 +41,11 @@ import UserSelect from '@/components/business/UserSelect.vue';
 @Component({
   components: {
     UserSelect,
+    Card,
+    Row,
+    Col,
+    Button,
+    Table,
   },
 })
 export default class AdminMember extends mixins(CurrentUser) {

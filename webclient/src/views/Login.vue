@@ -49,6 +49,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue } from 'vue-property-decorator';
 import VueRouter from 'vue-router';
+import { Card, Row, Col, Button, Form, FormItem, Input } from 'iview';
 import { nsUser } from '../store/index';
 import { mixins } from 'vue-class-component';
 import CurrentUser from '../mixins/CurrentUser';
@@ -57,6 +58,13 @@ import HelpTip from '@/components/common/HelpTip.vue';
 @Component({
   components: {
     HelpTip,
+    Card,
+    Row,
+    Col,
+    Button,
+    Form,
+    FormItem,
+    Input,
   },
 })
 export default class Login extends mixins(CurrentUser) {

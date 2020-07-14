@@ -127,7 +127,20 @@
 <script lang="ts">
 import { State, Action } from 'vuex-class';
 import { Component, Vue } from 'vue-property-decorator';
-import { Form, FormItem } from 'iview';
+import {
+  Form,
+  FormItem,
+  Card,
+  Divider,
+  Row,
+  Col,
+  Input,
+  Button,
+  Select,
+  Option,
+  Icon,
+  Switch,
+} from 'iview';
 import { mixins } from 'vue-class-component';
 import CurrentUser from '../mixins/CurrentUser';
 import HelpTip from '@/components/common/HelpTip.vue';
@@ -148,6 +161,18 @@ import { GitlabRepoInfo } from '../store/modules/gitlab';
   components: {
     HelpTip,
     UserSelect,
+    Form,
+    FormItem,
+    Card,
+    Divider,
+    Row,
+    Col,
+    Input,
+    Button,
+    Select,
+    Option,
+    Icon,
+    'i-switch': Switch,
   },
 })
 export default class ProjectConfig extends mixins(CurrentUser) {

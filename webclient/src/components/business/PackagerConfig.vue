@@ -26,16 +26,23 @@
 import { State, Action, Getter } from 'vuex-class';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Form, FormItem, Input, Button } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import { Packager, BasicPackagerConfig } from '../../types/packager';
 import { defaultPackagerConfig } from '../../store/modules/packager';
-import { Form } from 'iview';
 
 interface ComponentPackagerConfig {
   reset: () => void;
 }
 
-@Component({})
+@Component({
+  components: {
+    Form,
+    FormItem,
+    Input,
+    Button,
+  },
+})
 export default class PackagerConfig extends mixins(CurrentUser)
   implements ComponentPackagerConfig {
   @Prop({

@@ -12,15 +12,8 @@
         :key="option.id"
         :label="`包名:${option.package_name} (路径:${option.dist_path})`"
       >
-        <span
-          >包名:{{ option.package_name }} (路径:{{ option.dist_path }})</span
-        >
-        <Button
-          class="option-extra"
-          type="text"
-          size="small"
-          @click.stop="onEdit(option)"
-        >
+        <span>包名:{{ option.package_name }} (路径:{{ option.dist_path }})</span>
+        <Button class="option-extra" type="text" size="small" @click.stop="onEdit(option)">
           <Icon type="ios-settings" />修改
         </Button>
       </Option>
@@ -31,15 +24,8 @@
         </div>
       </Option>
     </Select>
-    <Modal
-      v-model="isModalShow"
-      footer-hide
-      :closable="false"
-      :mask-closable="false"
-    >
-      <p ref="elmConfigTitle" slot="header">
-        {{ config.id ? '修改' : '新建' }}{{ name }}
-      </p>
+    <Modal v-model="isModalShow" footer-hide :closable="false" :mask-closable="false">
+      <p ref="elmConfigTitle" slot="header">{{ config.id ? '修改' : '新建' }}{{ name }}</p>
       <PackagerConfig :data="config" @on-save="onSave" @on-cancel="onCancel" />
     </Modal>
   </div>
@@ -49,6 +35,7 @@
 import { State, Action } from 'vuex-class';
 import { Component, Vue, Watch, Prop } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
+import { Select, Option, Button, Icon, Modal } from 'iview';
 import CurrentUser from '../../mixins/CurrentUser';
 import PackagerConfig from '@/components/business/PackagerConfig.vue';
 import { BasicPackagerConfig, Packager } from '../../types/packager';
@@ -58,6 +45,11 @@ import { nsPackager } from '../../store';
 @Component({
   components: {
     PackagerConfig,
+    Select,
+    Option,
+    Button,
+    Icon,
+    Modal,
   },
 })
 export default class PackagerSelectWithManage extends mixins(CurrentUser) {
