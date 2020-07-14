@@ -82,10 +82,6 @@ export class BuildRecordService {
   }
 
   async queryDailyCountStats(dto: BuildRecordRangeStatsDto) {
-    //end date+1 in between query
-    const end_date = new Date(
-      new Date(dto.end_date).getTime() + 8.64e7,
-    ).toLocaleDateString();
     let query = this.buildRecordRepository
       .createQueryBuilder('record')
       .innerJoin('record.project', 'project')
@@ -99,7 +95,9 @@ export class BuildRecordService {
       )
       .addSelect("DATE_FORMAT(record.create_time, '%Y-%m-%d')", 'date')
       .groupBy('date')
-      .where({ create_time: Between(dto.start_date, end_date) })
+      .where({
+        create_time: Between(dto.start_date, dto.end_date + ' 23:59:59'),
+      })
       .andWhere('project.git_from = :git_from', { git_from: dto.git_from });
     if (dto.project_id) {
       query = query.andWhere('record.project_id = :project_id', {
@@ -111,10 +109,6 @@ export class BuildRecordService {
 
   async queryProjectRankingStats(dto: ProjectRankingStatsDto) {
     const LIMIT = 10;
-    //end date+1 in between query
-    const end_date = new Date(
-      new Date(dto.end_date).getTime() + 8.64e7,
-    ).toLocaleDateString();
     let query = this.buildRecordRepository
       .createQueryBuilder('record')
       .innerJoin('record.project', 'project')
@@ -124,7 +118,9 @@ export class BuildRecordService {
       .groupBy('project_id')
       .orderBy('count', 'DESC')
       .limit(LIMIT)
-      .where({ create_time: Between(dto.start_date, end_date) })
+      .where({
+        create_time: Between(dto.start_date, dto.end_date + ' 23:59:59'),
+      })
       .andWhere('record.status = :status', { status: dto.rank_status })
       .andWhere('project.git_from = :git_from', { git_from: dto.git_from });
 
